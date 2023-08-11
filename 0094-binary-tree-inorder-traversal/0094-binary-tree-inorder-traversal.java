@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal1(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         Deque<TreeNode> stack = new LinkedList<>();
         while(root != null || !stack.isEmpty()){
@@ -29,8 +29,9 @@ class Solution {
         return res;
     }
     
+    /* Recursive */
     
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversalRec(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
         accessTree(root, res);
         return res;
