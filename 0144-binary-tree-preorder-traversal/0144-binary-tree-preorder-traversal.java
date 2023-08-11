@@ -30,7 +30,8 @@ class Solution {
         return res;
     }
     
-        
+   /*Recursive */
+    
     public List<Integer> preorderTraversalRec(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         accessTree(root,res);
