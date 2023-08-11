@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal1(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         Deque<TreeNode> stack = new LinkedList<>();
         while(root != null || !stack.isEmpty()){
@@ -27,5 +27,21 @@ class Solution {
             root = root.right;
         }
         return res;
+    }
+    
+    
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        accessTree(root, res);
+        return res;
+    }
+    
+    public void accessTree(TreeNode root, List<Integer> res){
+        if(root == null){
+            return;
+        }
+        accessTree(root.left, res);
+        res.add(root.val);
+        accessTree(root.right, res);
     }
 }
