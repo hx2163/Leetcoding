@@ -535,4 +535,342 @@ class CountingSort {
 
 ```
 
+<h2><a href="https://www.programiz.com/dsa/radix-sort">7. Radix Sort</a></h2>
+Radix sort is a sorting algorithm that sorts the elements by first grouping the individual digits of the same place value. Then, sort the elements according to their increasing/decreasing order.
+
+---
+
+<h3>Radix sort is used when: </h3>
+
+* places where there are numbers in large ranges.
+* DC3 algorithm (Kärkkäinen-Sanders-Burkhardt) while making a suffix array.
+
+---
+
+<h3>Radix Sort Complexity</h3>
+
+<ul>
+<b> Time Complexity	 </b>
+    <li><code> Best	O(n + k) </code></li>
+    <li><code> Worst	O(n + k) </code></li>
+    <li><code> Average O(n + k) </code></li>
+<b> Space Complexity	</b>
+    <li><code> O(max) </code></li>
+</ul>
+
+---
+
+<h3>Code:</h3>
+
+```Java
+
+// Radix Sort in Java Programming
+
+import java.util.Arrays;
+
+class RadixSort {
+
+  // Using counting sort to sort the elements in the basis of significant places
+  void countingSort(int array[], int size, int place) {
+    int[] output = new int[size + 1];
+    int max = array[0];
+    for (int i = 1; i < size; i++) {
+      if (array[i] > max)
+        max = array[i];
+    }
+    int[] count = new int[max + 1];
+
+    for (int i = 0; i < max; ++i)
+      count[i] = 0;
+
+    // Calculate count of elements
+    for (int i = 0; i < size; i++)
+      count[(array[i] / place) % 10]++;
+
+    // Calculate cumulative count
+    for (int i = 1; i < 10; i++)
+      count[i] += count[i - 1];
+
+    // Place the elements in sorted order
+    for (int i = size - 1; i >= 0; i--) {
+      output[count[(array[i] / place) % 10] - 1] = array[i];
+      count[(array[i] / place) % 10]--;
+    }
+
+    for (int i = 0; i < size; i++)
+      array[i] = output[i];
+  }
+
+  // Function to get the largest element from an array
+  int getMax(int array[], int n) {
+    int max = array[0];
+    for (int i = 1; i < n; i++)
+      if (array[i] > max)
+        max = array[i];
+    return max;
+  }
+
+  // Main function to implement radix sort
+  void radixSort(int array[], int size) {
+    // Get maximum element
+    int max = getMax(array, size);
+
+    // Apply counting sort to sort elements based on place value.
+    for (int place = 1; max / place > 0; place *= 10)
+      countingSort(array, size, place);
+  }
+
+  // Driver code
+  public static void main(String args[]) {
+    int[] data = { 121, 432, 564, 23, 1, 45, 788 };
+    int size = data.length;
+    RadixSort rs = new RadixSort();
+    rs.radixSort(data, size);
+    System.out.println("Sorted Array in Ascending Order: ");
+    System.out.println(Arrays.toString(data));
+  }
+}
+
+```
+---
+
+<h2><a href="https://www.programiz.com/dsa/bucket-sort">8. Bucket Sort</a></h2>
+Bucket Sort is a sorting algorithm that divides the unsorted array elements into several groups called buckets. Each bucket is then sorted by using any of the suitable sorting algorithms or recursively applying the same bucket algorithm.
+Finally, the sorted buckets are combined to form a final sorted array.
+
+---
+
+<h3>Bucket sort is used when: </h3>
+
+* input is uniformly distributed over a range.
+* there are floating point values
+
+---
+
+<h3>Bucket Sort Complexity</h3>
+
+<ul>
+<b> Time Complexity	 </b>
+    <li><code> Best	O(n + k) </code></li>
+    <li><code> Worst	O(n^2) </code></li>
+    <li><code> Average O(n) </code></li>
+<b> Space Complexity	</b>
+    <li><code> O(n + k) </code></li>
+</ul>
+
+---
+
+<h3>Code:</h3>
+
+```Java
+
+// Bucket sort in Java
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class BucketSort {
+  public void bucketSort(float[] arr, int n) {
+    if (n <= 0)
+      return;
+    @SuppressWarnings("unchecked")
+    ArrayList<Float>[] bucket = new ArrayList[n];
+
+    // Create empty buckets
+    for (int i = 0; i < n; i++)
+      bucket[i] = new ArrayList<Float>();
+
+    // Add elements into the buckets
+    for (int i = 0; i < n; i++) {
+      int bucketIndex = (int) arr[i] * n;
+      bucket[bucketIndex].add(arr[i]);
+    }
+
+    // Sort the elements of each bucket
+    for (int i = 0; i < n; i++) {
+      Collections.sort((bucket[i]));
+    }
+
+    // Get the sorted array
+    int index = 0;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0, size = bucket[i].size(); j < size; j++) {
+        arr[index++] = bucket[i].get(j);
+      }
+    }
+  }
+
+  // Driver code
+  public static void main(String[] args) {
+    BucketSort b = new BucketSort();
+    float[] arr = { (float) 0.42, (float) 0.32, (float) 0.33, (float) 0.52, (float) 0.37, (float) 0.47,
+        (float) 0.51 };
+    b.bucketSort(arr, 7);
+
+    for (float i : arr)
+      System.out.print(i + "  ");
+  }
+}
+
+```
+
+---
+
+<h2><a href="https://www.programiz.com/dsa/heap-sort">9. Heap Sort </a></h2>
+Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to the selection sort where we first find the minimum element and place the minimum element at the beginning. Repeat the same process for the remaining elements.
+---
+
+<h3>Heap sort is used when: </h3>
+
+* the smallest (shortest) or highest (longest) value is needed instantly.
+* finding the order in statistics, dealing with priority queues in Prim's algorithm
+
+---
+
+<h3>Heap Sort Complexity</h3>
+
+<ul>
+<b> Time Complexity	 </b>
+    <li><code> Best	O(n logn) </code></li>
+    <li><code> Worst	O(n logn) </code></li>
+    <li><code> Average O(n logn) </code></li>
+<b> Space Complexity	</b>
+    <li><code> O(1) </code></li>
+</ul>
+
+---
+
+<h3>Code:</h3>
+
+```Java
+// Heap Sort in Java
+  
+  public class HeapSort {
+  
+    public void sort(int arr[]) {
+      int n = arr.length;
+  
+      // Build max heap
+      for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(arr, n, i);
+      }
+  
+      // Heap sort
+      for (int i = n - 1; i >= 0; i--) {
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+  
+        // Heapify root element
+        heapify(arr, i, 0);
+      }
+    }
+  
+    void heapify(int arr[], int n, int i) {
+      // Find largest among root, left child and right child
+      int largest = i;
+      int l = 2 * i + 1;
+      int r = 2 * i + 2;
+  
+      if (l < n && arr[l] > arr[largest])
+        largest = l;
+  
+      if (r < n && arr[r] > arr[largest])
+        largest = r;
+  
+      // Swap and continue heapifying if root is not largest
+      if (largest != i) {
+        int swap = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = swap;
+  
+        heapify(arr, n, largest);
+      }
+    }
+  
+    // Function to print an array
+    static void printArray(int arr[]) {
+      int n = arr.length;
+      for (int i = 0; i < n; ++i)
+        System.out.print(arr[i] + " ");
+      System.out.println();
+    }
+  
+    // Driver code
+    public static void main(String args[]) {
+      int arr[] = { 1, 12, 9, 5, 6, 10 };
+  
+      HeapSort hs = new HeapSort();
+      hs.sort(arr);
+  
+      System.out.println("Sorted array is");
+      printArray(arr);
+    }
+  }
+
+```
+
+---
+
+<h2><a href="https://www.programiz.com/dsa/shell-sort">10. Shell Sort </a></h2>
+Shell sort is a generalized version of the insertion sort algorithm. It first sorts elements that are far apart from each other and successively reduces the interval between the elements to be sorted.
+---
+
+<h3>Shell sort is used when: </h3>
+
+* Insertion sort does not perform well when the close elements are far apart. Shell sort helps in reducing the distance between the close elements. Thus, there will be less number of swappings to be performed.
+* calling a stack is overhead. uClibc library uses this sort.
+* recursion exceeds a limit. bzip2 compressor uses it.
+
+---
+
+<h3>Shell Sort Complexity</h3>
+
+<ul>
+<b> Time Complexity	 </b>
+    <li><code> Best	O(n logn) </code></li>
+    <li><code> Worst	O(n^2) </code></li>
+    <li><code> Average O(n logn) </code></li>
+<b> Space Complexity	</b>
+    <li><code> O(1) </code></li>
+</ul>
+
+---
+
+<h3>Code:</h3>
+
+```Java
+// Shell sort in Java programming
+
+import java.util.Arrays;
+
+// Shell sort
+class ShellSort {
+
+  // Rearrange elements at each n/2, n/4, n/8, ... intervals
+  void shellSort(int array[], int n) {
+  for (int interval = n / 2; interval > 0; interval /= 2) {
+    for (int i = interval; i < n; i += 1) {
+    int temp = array[i];
+    int j;
+    for (j = i; j >= interval && array[j - interval] > temp; j -= interval) {
+      array[j] = array[j - interval];
+    }
+    array[j] = temp;
+    }
+  }
+  }
+
+  // Driver code
+  public static void main(String args[]) {
+  int[] data = { 9, 8, 3, 7, 5, 6, 4, 1 };
+  int size = data.length;
+  ShellSort ss = new ShellSort();
+  ss.shellSort(data, size);
+  System.out.println("Sorted Array in Ascending Order: ");
+  System.out.println(Arrays.toString(data));
+  }
+}
+
+```
 
