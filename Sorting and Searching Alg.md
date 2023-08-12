@@ -347,7 +347,7 @@ Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' ele
 
 ---
 
-<h3>Quicksort algorithm is used when </h3>
+<h3>Quick Sort is used when: </h3>
 
 * the programming language is good for recursion
 * time complexity matters
@@ -455,7 +455,7 @@ Counting sort is a sorting algorithm that sorts the elements of an array by coun
 
 ---
 
-<h3>Counting sort is used when: </h3>
+<h3>Counting Sort is used when: </h3>
 
 * there are smaller integers with multiple counts.
 * linear complexity is the need.
@@ -540,7 +540,7 @@ Radix sort is a sorting algorithm that sorts the elements by first grouping the 
 
 ---
 
-<h3>Radix sort is used when: </h3>
+<h3>Radix Sort is used when: </h3>
 
 * places where there are numbers in large ranges.
 * DC3 algorithm (Kärkkäinen-Sanders-Burkhardt) while making a suffix array.
@@ -640,7 +640,7 @@ Finally, the sorted buckets are combined to form a final sorted array.
 
 ---
 
-<h3>Bucket sort is used when: </h3>
+<h3>Bucket Sort is used when: </h3>
 
 * input is uniformly distributed over a range.
 * there are floating point values
@@ -720,7 +720,7 @@ public class BucketSort {
 Heap sort is a comparison-based sorting technique based on Binary Heap data structure. It is similar to the selection sort where we first find the minimum element and place the minimum element at the beginning. Repeat the same process for the remaining elements.
 ---
 
-<h3>Heap sort is used when: </h3>
+<h3>Heap Sort is used when: </h3>
 
 * the smallest (shortest) or highest (longest) value is needed instantly.
 * finding the order in statistics, dealing with priority queues in Prim's algorithm
@@ -816,7 +816,7 @@ Heap sort is a comparison-based sorting technique based on Binary Heap data stru
 Shell sort is a generalized version of the insertion sort algorithm. It first sorts elements that are far apart from each other and successively reduces the interval between the elements to be sorted.
 ---
 
-<h3>Shell sort is used when: </h3>
+<h3>Shell Sort is used when: </h3>
 
 * Insertion sort does not perform well when the close elements are far apart. Shell sort helps in reducing the distance between the close elements. Thus, there will be less number of swappings to be performed.
 * calling a stack is overhead. uClibc library uses this sort.
