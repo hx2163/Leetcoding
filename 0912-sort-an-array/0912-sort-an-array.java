@@ -1,8 +1,10 @@
 class Solution {
     public int[] sortArray(int[] nums) {
         if(nums.length < 1) return null;
-        if(nums.length < 15)
+        if(nums.length < 15){
             shellSort(nums, nums.length);
+            return nums;
+        }
           //quickSort(nums,0,nums.length -1);
         else{
             if(nums.length < 2) return nums;
@@ -12,7 +14,6 @@ class Solution {
             return mergeSort(sortArray(left), sortArray(right));
             
         } 
-        return nums;
     }
     
     
