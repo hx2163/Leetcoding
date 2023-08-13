@@ -1,18 +1,18 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        // if(nums.length < 1) return null;
-        // if(nums.length < 15)
-        //     shellSort(nums, nums.length);
-        //   //quickSort(nums,0,nums.length -1);
-        // else{
+        if(nums.length < 1) return null;
+        if(nums.length < 15)
+            shellSort(nums, nums.length);
+          //quickSort(nums,0,nums.length -1);
+        else{
             if(nums.length < 2) return nums;
             int mid = nums.length / 2;
             int[] left = Arrays.copyOfRange(nums, 0, mid);
             int[] right = Arrays.copyOfRange(nums, mid, nums.length);
-            // mergeSort(sortArray(left), sortArray(right));
+            return mergeSort(sortArray(left), sortArray(right));
             
-        // } 
-        return mergeSort(sortArray(left), sortArray(right));
+        } 
+        return nums;
     }
     
     
