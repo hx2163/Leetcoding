@@ -11,8 +11,7 @@ class Solution {
             int mid = nums.length / 2;
             int[] left = Arrays.copyOfRange(nums, 0, mid);
             int[] right = Arrays.copyOfRange(nums, mid, nums.length);
-            return mergeSort(sortArray(left), sortArray(right));
-            
+            return mergeSort(sortArray(left), sortArray(right));            
         } 
     }
     
