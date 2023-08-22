@@ -32,9 +32,11 @@ class Solution {
         
         for(int i = 1; i < prices.length; i++){
             if(prices[i] > min) {
+                // 当前元素大于最小值, 查看是否需要更新已知最大值
                 diff = Math.max(diff, prices[i] - min);
             }
             else{
+                //更新当前最小值
                 min = prices[i];
             }
         }
