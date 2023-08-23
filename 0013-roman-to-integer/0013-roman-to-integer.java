@@ -18,7 +18,9 @@ class Solution {
         
         for(int i=0; i < s.length(); i++){
             char front = s.charAt(i);
-            if((i+1)>s.length()-1){
+
+            //Odd length case
+            if((i+1) > s.length()-1){
                 result += helper(front);
                 break;
             }
