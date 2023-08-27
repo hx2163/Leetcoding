@@ -1,4 +1,6 @@
 class Solution {
+    
+    // O(n!)
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         if(nums.length == 0) return res;
@@ -6,7 +8,9 @@ class Solution {
         return res;        
     }
 
-    public void helper(int[] nums, List<List<Integer>> res, List<Integer> temp){
+    public void helper(int[] nums, 
+                       List<List<Integer>> res, 
+                       List<Integer> temp){
         //base case
         if(temp.size() == nums.length){
            res.add(new ArrayList<>(temp));
