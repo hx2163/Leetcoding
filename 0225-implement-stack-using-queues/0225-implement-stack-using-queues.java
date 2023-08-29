@@ -1,9 +1,8 @@
 class MyStack {
+    Queue<Integer> q = new LinkedList<Integer>();
 
-    private static Queue<Integer> q;
 
     public MyStack() {
-        q = new LinkedList<Integer>();
         
     }    
     public void push(int x) {
