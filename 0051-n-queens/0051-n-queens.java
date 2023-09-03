@@ -11,34 +11,76 @@ class Solution {
     }
     
     private void helper(char[][] board, int row, int col, int n){
-        //column out of bound move to next row
         if(col == board[0].length){
             col = 0;
-            row++;
+            row++;       
         }
-        
-        // n is 0 => no queen left and add to the res
         if(n == 0){
             res.add(toString(board));
             return;
         }
-        
-        //row out of bound
-        if(row == board.length)
+        if(row == board.length){
             return;
-        
-        //place queen if valid
-        if(isValid(board, row, col)){
+        }
+        if(isVaild(board, row, col)){
             board[row][col] = 'Q';
             n--;
             helper(board, row, col + 1, n);
-            //backtrack unchoose the option
             board[row][col] = '.';
             n++;
         }
-        //skip this cell
+        //skip
         helper(board, row, col + 1, n);
     }
+    
+    private boolean isVaild(char[][] board, int row, int col){
+        int N = board.length;
+        for(int i = 0; i < N; i++){
+            if(board[row][i] == 'Q')
+                return false;
+            if(board[i][col] == 'Q')
+                return false;
+        }
+        
+        //top right
+        int i = row, j = col;
+        while(i >= 0 && j >= 0){
+            if(board[i][j] == 'Q')
+                return false;
+            i--;
+            j--;
+        }
+        //top left
+        i = row;
+        j = col;
+        while(i >= 0 && j < N){
+            if(board[i][j] == 'Q')
+                return false;
+            i--;
+            j++;
+        }
+        //down right
+        i = row;
+        j = col;
+        while(i < N && j >= 0){
+            if(board[i][j] == 'Q')
+                return false;
+            i++;
+            j--;
+        }
+        //down left
+        i = row;
+        j = col;
+        while(i < N && j < N){
+            if(board[i][j] == 'Q')
+                return false;
+            i++;
+            j++;
+        }
+        
+        return true;
+    }
+    
     //overide toString method
     private List<String> toString(char[][] board){
         List<String> list = new LinkedList<>();
@@ -53,58 +95,4 @@ class Solution {
         return list;
     }
     
-    private boolean isValid(char[][] board, int row, int col){
-        int N = board.length;
-        //Top and Down
-        for(int i = 0; i < N; i++){
-            if(board[i][col] != '.')
-                return false;
-            if(board[row][i] != '.')
-                return false;
-        }
-        /* top left: i--j--
-           top right: i--j++
-           down left: i++j--
-           down right: i++j++
-         */
-
-        
-        //top left
-        int i = row, 
-        j = col;
-        while(i >= 0 && j >= 0){
-            if(board[i][j] == 'Q')
-                return false;
-            i--;
-            j--;
-        }        
-        //top right
-        i = row;
-        j = col;
-        while(i >= 0 && j < N){
-            if(board[i][j] == 'Q')
-                return false;
-            i--;
-            j++;
-        }
-        //down left
-        i = row;
-        j = col;
-        while(i < N && j >= 0){
-            if(board[i][j] == 'Q')
-                return false;
-            i++;
-            j--;
-        }        
-        //down right
-        i = row;
-        j = col;
-        while(i < N && j < N){
-            if(board[i][j] == 'Q')
-                return false;
-            i++;
-            j++;
-        }
-        return true;
-    }
 }
