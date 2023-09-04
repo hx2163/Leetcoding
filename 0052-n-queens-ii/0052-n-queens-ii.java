@@ -30,6 +30,7 @@ class Solution {
             if(board[row][i] != '.')
                 return false;
         }
+        
         /* top left: i--j--
            top right: i--j++
            down left: i++j--
