@@ -10,14 +10,14 @@ class Solution {
         return res;
     }
     
-    private void helper(char[][] board, int row, int col, int n){
-        if(col == board[0].length){
-            col = 0;
-            row++;       
-        }
+    public void helper(char[][] board, int row, int col, int n){
         if(n == 0){
             res.add(toString(board));
             return;
+        }
+        if(col == board[0].length){
+            col = 0;
+            row ++;
         }
         if(row == board.length){
             return;
@@ -29,56 +29,7 @@ class Solution {
             board[row][col] = '.';
             n++;
         }
-        //skip
         helper(board, row, col + 1, n);
-    }
-    
-    private boolean isVaild(char[][] board, int row, int col){
-        int N = board.length;
-        for(int i = 0; i < N; i++){
-            if(board[row][i] == 'Q')
-                return false;
-            if(board[i][col] == 'Q')
-                return false;
-        }
-        
-        //top right
-        int i = row, j = col;
-        while(i >= 0 && j >= 0){
-            if(board[i][j] == 'Q')
-                return false;
-            i--;
-            j--;
-        }
-        //top left
-        i = row;
-        j = col;
-        while(i >= 0 && j < N){
-            if(board[i][j] == 'Q')
-                return false;
-            i--;
-            j++;
-        }
-        //down right
-        i = row;
-        j = col;
-        while(i < N && j >= 0){
-            if(board[i][j] == 'Q')
-                return false;
-            i++;
-            j--;
-        }
-        //down left
-        i = row;
-        j = col;
-        while(i < N && j < N){
-            if(board[i][j] == 'Q')
-                return false;
-            i++;
-            j++;
-        }
-        
-        return true;
     }
     
     //overide toString method
@@ -95,4 +46,56 @@ class Solution {
         return list;
     }
     
+    private boolean isVaild(char[][] board, int row, int col){
+        //top and down
+        int N = board.length;
+        for(int i = 0; i < N; i++){
+            if(board[row][i] == 'Q')
+                return false;
+            if(board[i][col] == 'Q')
+                return false;
+        }
+        
+        //top left
+        int i = row; 
+        int j = col;
+        while(i >= 0 && j >= 0){
+            if(board[i][j] == 'Q')
+                return false;
+            i--;
+            j--;
+        }
+        
+        //top right
+        i = row;
+        j = col;
+        while(i >= 0 && j < N){
+            if(board[i][j] == 'Q')
+                return false;
+            i--;
+            j++;            
+        }
+        
+        //down left
+        i = row;
+        j = col;
+        while(i < N && j >= 0){
+            if(board[i][j] == 'Q')
+                return false;
+            i++;
+            j--;            
+        }
+        
+        //down right
+        i = row;
+        j = col;
+        while(i < N && j < N){
+            if(board[i][j] == 'Q')
+                return false;
+            i++;
+            j++;            
+        }
+        
+        return true;
+    }
 }
