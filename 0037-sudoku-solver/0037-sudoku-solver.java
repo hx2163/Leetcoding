@@ -33,7 +33,7 @@ class Solution {
     }
     
     public boolean isValid(int row, int col, char cur){
-        //check same row and col
+        //Check same row and col
         for(int i = 0; i < 9; i++){
             if(board[row][i] == cur)
                return false;
@@ -42,7 +42,6 @@ class Solution {
         }
                
         //Check box    
-        
         int rowBox = row/3;
         int colBox = col/3;
         for(int i = rowBox*3; i < (rowBox+1)*3; i++){
