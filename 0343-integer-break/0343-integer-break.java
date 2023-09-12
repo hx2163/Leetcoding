@@ -1,22 +1,13 @@
 class Solution {
-    Integer[] dp;
     public int integerBreak(int n) {
-        //base case
-        dp = new Integer[n+1];
-        return dfs(n);
-    }
-    
-    private int dfs(int n){
-        if(n < 2) return 0;
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
         
-        if(dp[n] != null) return dp[n];
-        
-        int max = 0;
-        for(int i = 1; i < n; i++){
-            int curMax = Math.max(dfs(n-i), n-i);
-            max = Math.max(curMax*i, max);
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i - 1; j++) {
+                dp[i] = Math.max(dp[i], Math.max(j * dp[i - j], j * (i - j)));
+            }
         }
-        dp[n] = max;
-        return max;
+        return dp[n];
     }
 }
