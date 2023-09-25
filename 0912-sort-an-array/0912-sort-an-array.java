@@ -38,40 +38,34 @@ class Solution {
     
     
 /****************Quick Sort*********************/
-    void quickSort(int[] array, int start, int end){
+    void quickSort(int arr[], int start, int end){
         if(start < end){
-            int pivot = partition(array, start, end);
-            quickSort(array, start, pivot - 1);
-            quickSort(array, pivot + 1, end);
+            int pi = partition(arr, start,end);
+            quickSort(arr, start, pi-1);
+            quickSort(arr, pi+1, end);
         }
-    }
-    static int partition(int[] array, int start, int end){
-        // choose the rightmost element as pivot
-        int pivot = array[end];
-        //pointer
-        int i = start - 1;
         
+    }
+
+    static int partition(int arr[], int start, int end){
+        int pivot = arr[end];
+        int i = start - 1;
+
         for(int j = start; j < end; j++){
-            if(array[j] <= pivot){
-                // if element smaller than pivot is found
-                // swap it with the element at i with element at j
+            if(arr[j] <= pivot) {
                 i++;
-                swap(array, i, j);
+                swap(arr, i, j);
             }
         }
-        
-        // swap the pivot element with the greater element specified by i
         i++;
-        swap(array, i, end);
-        
-        // return the position from where partition is done
+        swap(arr,i,end);
         return i;
     }
-    
-    static void swap(int[] array, int i, int j){
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+
+    static void swap(int arr[], int a, int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
 
     
