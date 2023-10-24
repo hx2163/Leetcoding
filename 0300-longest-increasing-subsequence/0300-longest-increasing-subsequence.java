@@ -3,23 +3,22 @@ class Solution {
 
         //initializing the new Array to store the LIS at each index
         int[] dp = new int[nums.length];
-        //considering max=1 as each index value in itself is a sunsequence of array
         int max = 1;
-
-        //outer loop for actual array
-        for(int i=0;i<nums.length;i++){
-            //initializing base LIS at index
-            dp[i] = 1;
-            //checking from 0 to <i 
-            for(int j=0; j<i; j++){
-                //if number is < currValue of nums[i]
-                if(nums[j] < nums[i]){
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
-                    max = Math.max(max, dp[i]);
+        
+        // opt[j] = max{all of the opt[k] checking from 0 to < k if kth < jth: 1+dp[k]}
+        for(int j=0; j<nums.length; j++){
+            dp[j] = 1;
+            //checking from 0 to < k
+            for(int k=0; k<j; k++){
+                if(nums[k] < nums[j]){
+                    dp[j] = Math.max(dp[j], dp[k]+1);
+                    max = Math.max(max, dp[j]);               
                 }
             }
         }
         return max;
-        
     }
+
 }
+
+
