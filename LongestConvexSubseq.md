@@ -10,7 +10,6 @@ Output specification: the output contains one line with the maximum length of a 
 <h3>Code:</h3>
 
 ```Java
-// Optimized Bubble sort in Java
 
 import java.util.Arrays;
 
