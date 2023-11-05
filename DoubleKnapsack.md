@@ -14,7 +14,7 @@ class Main {
 
     public static int DoubleKnapsack(int W1, int W2, int[] wt, int[] val) {
 
-        //int[][][] dp = new int[wt.length + 1][W1 + 1][W2 + 1];
+        int[][][] dp = new int[wt.length + 1][W1 + 1][W2 + 1];
 
         for (int i = 1; i <= wt.length; i++) {
             for (int w1 = 0; w1 <= W1; w1++) {
