@@ -1,6 +1,7 @@
 class Solution {
     public double myPow(double x, int n) {
         
+        //idea: (high school math) =>  x^8 = (x^2)^4
         // Base condition: If n is 0, x^0 is 1
         if (n == 0) {
             return 1;
@@ -16,7 +17,6 @@ class Solution {
         }
 
         // If N is even, recursively compute the square of x^(N/2)
-        //high school math: x^8 = (x^2)^4
         if (N % 2 == 0) {
             return myPow(x * x, (int) (N / 2));
         } 
