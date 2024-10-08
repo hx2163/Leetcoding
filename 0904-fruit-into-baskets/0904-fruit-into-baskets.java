@@ -1,32 +1,28 @@
 class Solution {
     public int totalFruit(int[] tree) {
-        int lastFruit = -1;
-        int secondLastFruit = -1;
-        int lastFruitCount = 0;
-        int currMax = 0;
-        int max = 0;
+        Map<Integer, Integer> count = new HashMap<Integer, Integer>();
         
-        for(int fruit : tree){
-            
-            //curr fruit is the same or not
-            if(fruit == lastFruit || fruit == secondLastFruit) 
-                currMax +=1;
-            else
-                currMax = lastFruitCount + 1;  
-            
-            //check if the lastFruitCount is the same or not
-            if(fruit == lastFruit)
-                lastFruitCount +=1;
-            else 
-                lastFruitCount = 1;
-            
-            if(fruit != lastFruit){
-                secondLastFruit = lastFruit;
-                lastFruit = fruit;
+        int res = 0, left = 0;
+        
+        for (int right = 0; right < tree.length; ++right){
+            count.put(tree[right], count.getOrDefault(tree[right],0)+1); //update hashmap
+  
+            //if more than 2 element, remove the leftmost element from hashMap
+            while (count.size() > 2) {
+                count.put(tree[left], count.get(tree[left]) - 1);
+                if (count.get(tree[left]) == 0) count.remove(tree[left]);
+                left++;
             }
-            max = Math.max(max, currMax);
+            
+            //compare max res
+            res = Math.max(res, right - left +1);
+            
         }
-        return max;
-        }
+        return res;
+    }
 }
+
+
+
+
 
