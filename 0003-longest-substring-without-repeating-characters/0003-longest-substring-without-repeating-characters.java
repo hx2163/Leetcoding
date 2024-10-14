@@ -7,7 +7,7 @@ class Solution {
         
         for(int r=0; r<s.length(); r++){
             // 如果遇到重复字符，移动左指针直到窗口内无重复字符
-            while(!set.add(s.charAt(r))){
+            while(set.contains(s.charAt(r))){
                 set.remove(s.charAt(left));
                 left++;
             }
